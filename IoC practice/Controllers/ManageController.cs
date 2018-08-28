@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using IoC_practice.Logger;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -16,8 +17,11 @@ namespace IoC_practice.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public ManageController()
+        private readonly IMyLogger _logger;
+
+        public ManageController(IMyLogger logger)
         {
+            _logger = logger;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using IoC_practice.Logger;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -18,8 +19,11 @@ namespace IoC_practice.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        public AccountController()
+        private readonly IMyLogger _logger;
+
+        public AccountController(IMyLogger logger)
         {
+            _logger = logger;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
